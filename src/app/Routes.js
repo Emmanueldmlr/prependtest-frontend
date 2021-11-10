@@ -20,7 +20,7 @@ const WebRoutes = () => {
 
                 <Guest path="/" exact component={Landing} />
 
-                <Guest path="/pokemon/:id" component={Pokemon} />
+                <Guest path="/pokemon/:name" component={Pokemon} />
 
                 <Guest path="*" exact component={NotFound} />
 

@@ -10,11 +10,11 @@ export const fetchPokemons = (params) => {
 
 };
 
-export const getPokemon = (id) => {
+export const getPokemon = (name) => {
 
   const http = new HttpService();
 
-  const url = `/${id}`;
+  const url = `/${name}`;
 
   return http.getData(url);
 
