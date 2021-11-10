@@ -1,5 +1,9 @@
 import React from 'react'
 
+import { Link} from 'react-router-dom';
+
+
+
 const Landing: React.FC = () => {
 
     return (
@@ -31,23 +35,26 @@ const Landing: React.FC = () => {
 
                                 <div className="col-lg-4">
 
-                                    <a href="/" className="service-link">
+                                    <Link to="/pokemon/1">
 
-                                        <div className="box text-center">
+                                        <a href="#" className="service-link">
 
-                                            <div className="icon d-flex align-items-end">
+                                            <div className="box text-center">
 
-                                            <img alt="game" src="/rubik.png" height="50" width="50"/>
+                                                <div className="icon d-flex align-items-end">
+
+                                                <img alt="game" src="/rubik.png" height="50" width="50"/>
+
+                                                </div>
+
+                                                <h3 className="service-title">bulbasaur</h3>
+
+                                                <p>firered-leafgreen</p>
 
                                             </div>
 
-                                            <h3 className="service-title">bulbasaur</h3>
-
-                                            <p>firered-leafgreen</p>
-
-                                        </div>
-
-                                    </a>
+                                        </a>
+                                    </Link>
 
                                 </div>
 
