@@ -8,6 +8,9 @@ import Loader from "react-loader-spinner";
 
 import gameInterface from '../interface/gameInterface'
 
+import Wrapper from '../components/main/Wrapper'
+import ListCard from 'components/main/ListCard';
+
 const Pokemon: React.FC = () => {
 
     const { name }: { name: string } = useParams()
@@ -92,7 +95,7 @@ const Pokemon: React.FC = () => {
                                 </div>
 
                                 :
-                                
+
                                 game ?
 
                                     <>
@@ -101,9 +104,7 @@ const Pokemon: React.FC = () => {
 
                                             <div className="row">
 
-                                                <div className="col-lg-6" id="sidebar">
-
-                                                    <h5>Species</h5>
+                                                <Wrapper title="Species" isMove={false}>
 
                                                     <div id="faqNavContainer" className="theiaStickySidebar">
 
@@ -115,11 +116,10 @@ const Pokemon: React.FC = () => {
 
                                                         </ul>
                                                     </div>
-                                                </div>
 
-                                                <div className="col-lg-6" id="sidebar">
+                                                </Wrapper>
 
-                                                    <h5>Weight</h5>
+                                                <Wrapper title="Weight" isMove={false}>
 
                                                     <div id="faqNavContainer" className="theiaStickySidebar">
 
@@ -128,110 +128,122 @@ const Pokemon: React.FC = () => {
                                                             <li><a href="#" className="active nice-scroll-faq">{game.weight}</a></li>
 
                                                         </ul>
+
                                                     </div>
-                                                </div>
 
-                                                <div className="col-lg-6" id="sidebar">
+                                                </Wrapper>
 
-                                                    <h5>Stats</h5>
+                                                <Wrapper title="Stats" isMove={false}>
 
                                                     <div id="orderContainer" className="theiaStickySidebar">
+
                                                         <div className="row">
+
                                                             <div className="col-md-12">
 
-                                                                <div className="row total-container">
-                                                                    <div className="col-8 p-0">
-                                                                        <h5>Name</h5>
-                                                                    </div>
+                                                                <ListCard name="name" title="Stat">
 
-                                                                    <div className="col-4 p-0">
-                                                                        <h5>Base Stats</h5>
-                                                                    </div>
+                                                                    <>
+                                                                        {
 
-                                                                    {
+                                                                            game.stats.map((stat, index) => (
 
-                                                                        game.stats.map((stat, index) => (
+                                                                                <>
+                                                                                    <div className="col-8 p-0">
 
-                                                                            <>
-                                                                                <div className="col-8 p-0">
-                                                                                    <span>{stat.stat.name}</span>
-                                                                                </div>
+                                                                                        <span>{stat.stat.name}</span>
 
-                                                                                <div className="col-4 p-0">
-                                                                                    <span>{stat.base_stat}</span>
-                                                                                </div>
-                                                                            </>
-                                                                        ))
+                                                                                    </div>
 
-                                                                    }
+                                                                                    <div className="col-4 p-0">
 
+                                                                                        <span>{stat.base_stat}</span>
 
-                                                                </div>
+                                                                                    </div>
+
+                                                                                </>
+
+                                                                            ))
+
+                                                                        }
+
+                                                                    </>
+
+                                                                </ListCard>
+
                                                                 <div id="totalError"></div>
+
                                                             </div>
+
                                                         </div>
 
                                                     </div>
-                                                </div>
 
-                                                <div className="col-lg-6" id="sidebar">
+                                                </Wrapper>
 
-                                                    <h5>Types</h5>
+                                                <Wrapper title="Types" isMove={false}>
 
                                                     <div id="orderContainer" className="theiaStickySidebar">
+
                                                         <div className="row">
+
                                                             <div className="col-md-12">
 
-                                                                <div className="row total-container">
-                                                                    <div className="col-8 p-0">
-                                                                        <h5>Name</h5>
-                                                                    </div>
+                                                               <ListCard title="slot" name="name">
 
-                                                                    <div className="col-4 p-0">
-                                                                        <h5>Slot</h5>
-                                                                    </div>
+                                                                    <>
+                                                                        {
 
-                                                                    {
-                                                                        game.types.map((type) => (
+                                                                            game.types.map((type) => (
 
-                                                                            <>
-                                                                                <div className="col-8 p-0">
-                                                                                    <span>{type.type.name}</span>
-                                                                                </div>
+                                                                                <>
+                                                                                    <div className="col-8 p-0">
 
-                                                                                <div className="col-4 p-0">
-                                                                                    <span>{type.slot}</span>
-                                                                                </div>
-                                                                            </>
-                                                                        ))
-                                                                    }
+                                                                                        <span>{type.type.name}</span>
 
+                                                                                    </div>
 
-                                                                </div>
+                                                                                    <div className="col-4 p-0">
+
+                                                                                        <span>{type.slot}</span>
+
+                                                                                    </div>
+
+                                                                                </>
+                                                                            ))
+                                                                        }
+
+                                                                    </>
+
+                                                               </ListCard>
+
                                                                 <div id="totalError"></div>
+
                                                             </div>
+
                                                         </div>
 
                                                     </div>
-                                                </div>
+
+                                                </Wrapper>
+
+                                                <Wrapper title="Moves" isMove={true}>
+
+                                                    <div id="orderContainer" className="theiaStickySidebar">
+
+                                                        {
+                                                            game.moves.map((move, index) => (
+
+                                                                <span className="terms-link" key={index}>{move.move.name}</span>
+
+                                                            ))
+                                                        }
+
+                                                    </div>
+
+                                                </Wrapper>
                                             </div>
-                                            <div className="col-lg-12" id="sidebar">
 
-                                                <h5>Moves</h5>
-
-                                                <div id="orderContainer" className="theiaStickySidebar">
-
-                                                    {
-                                                        game.moves.map((move, index) => (
-
-                                                            <span className="terms-link" key={index}>{move.move.name}</span>
-
-                                                        ))
-                                                    }
-
-                                                </div>
-
-                                            </div>
 
                                         </div>
 
@@ -256,8 +268,11 @@ const Pokemon: React.FC = () => {
                         }
 
                     </div>
+
                 </div>
+
             </div>
+            
         </main>
 
     )
