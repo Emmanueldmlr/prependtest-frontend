@@ -40,7 +40,7 @@ const Landing: React.FC = () => {
 
             try {
 
-                getPokemons(null)
+                getPokemons("limit=15&offset=0")
 
             }
             catch (e) {
