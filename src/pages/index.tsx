@@ -1,3 +1,5 @@
+import Card from '../components/main/Card';
+
 import React from 'react'
 
 import { Link} from 'react-router-dom';
@@ -33,88 +35,12 @@ const Landing: React.FC = () => {
 
                             <div className="row">
 
-                                <div className="col-lg-4">
+                                <Card name="Crochet" id={4} key={1}/>
+                                <Card name="Crocodie" id={4} key={2}/>
+                                <Card name="Crochet" id={4} key={3}/>
+                                <Card name="Crochet" id={4} key={4}/>
+                                <Card name="Crochet" id={4} key={5}/>
 
-                                    <Link to="/pokemon/1">
-
-                                        <a href="#" className="service-link">
-
-                                            <div className="box text-center">
-
-                                                <div className="icon d-flex align-items-end">
-
-                                                <img alt="game" src="/rubik.png" height="50" width="50"/>
-
-                                                </div>
-
-                                                <h3 className="service-title">bulbasaur</h3>
-
-                                                <p>firered-leafgreen</p>
-
-                                            </div>
-
-                                        </a>
-                                    </Link>
-
-                                </div>
-
-                                <div className="col-lg-4">
-
-                                    <a href="/" className="service-link">
-
-                                        <div className="box text-center">
-
-                                            <div className="icon d-flex align-items-end">
-                                                
-                                                 <img alt="game" src="/rubik.png" height="50" width="50"/>
-                                                
-                                            </div>
-
-                                            <h3 className="service-title">ivysaur</h3>
-
-                                            <p>firered-leafgreen generation.</p>
-                                            
-                                        </div>
-                                    </a>
-                                </div>
-                                <div className="col-lg-4">
-                                    <a href="/" className="service-link">
-                                        <div className="box text-center">
-                                            <div className="icon d-flex align-items-end"><img  alt="game" src="/rubik.png" height="50" width="50"/></div>
-                                            <h3 className="service-title">venusaur</h3>
-                                            <p>firered-leafgreen summary.</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div className="col-lg-4">
-                                    <a href="/" className="service-link">
-                                        <div className="box text-center">
-                                            <div className="icon d-flex align-items-end"><img alt="game" src="/rubik.png" height="50" width="50"/></div>
-                                            <h3 className="service-title">charmander</h3>
-                                            <p>firered-leafgreen quick delivery.</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div className="col-lg-4">
-                                    <a href="/" className="service-link">
-                                        <div className="box text-center">
-                                            <div className="icon d-flex align-items-end"><img alt="game" src="/rubik.png" height="50" width="50"/></div>
-                                            <h3 className="service-title">charmeleon</h3>
-                                            <p>firered-leafgreen shshs</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div className="col-lg-4">
-                                    <a href="/" className="service-link">
-                                        <div className="box text-center">
-                                            <div className="icon d-flex align-items-end"><img alt="game" src="/rubik.png" height="50" width="50"/></div>
-                                            <h3 className="service-title">charizard</h3>
-                                            <p>firered-leafgreen</p>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                
                             </div>
 
                             <nav aria-label="Page navigation">
