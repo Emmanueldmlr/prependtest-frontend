@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { BrowserRouter as Router, Routes, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import {Guest} from '../components/guard/Guest.js';
 

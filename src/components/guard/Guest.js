@@ -4,6 +4,12 @@ import { Route} from 'react-router-dom';
 
 import ErrorBoundary from './ErrorBoundary';
 
+import Header from '../part/Header'
+
+import SubHeader from '../part/SubHeader'
+
+import Footer from '../part/Footer'
+
 export const Guest = ({component: Component, ...rest}) => {
 
     return(
@@ -23,13 +29,15 @@ export const Guest = ({component: Component, ...rest}) => {
 
                                 <>
                                 
-                                    <div className="main-wrapper max-height">
+                                    <div id="page">
 
-                                        {/* <Header/>  */}
+                                        <Header/> 
+
+                                        <SubHeader/> 
 
                                         <Component  {...props} /> 
     
-                                        {/* <Footer/> */}
+                                        <Footer/>
 
                                     </div>
 
