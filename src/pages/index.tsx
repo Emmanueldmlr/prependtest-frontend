@@ -1,12 +1,69 @@
 import Card from '../components/main/Card';
 
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 
-import { Link} from 'react-router-dom';
+import { fetchPokemons } from '../services/pokemonService';
 
+interface pokemon {
 
+    count: number | null
+
+    next: string | null,
+
+    previous: string | null,
+
+    results: {name: string, url: string}[] | null
+}
 
 const Landing: React.FC = () => {
+
+    const [loading, setIsLoading] = useState<boolean>(true)
+
+    const [pokemons, setPokemons] = useState<pokemon | null>(null)
+
+    const [error, setError] = useState<string| null>(null)
+
+    useEffect(() => {
+
+        if(!pokemons){
+
+            const getPokemons = async () => {
+
+                try{
+
+                    const result = await fetchPokemons()
+
+                    console.log(result)
+              
+                    const { data } : {data: pokemon} = result
+
+                    setPokemons(data)
+                            
+                    setIsLoading(false)
+                          
+                }
+              
+                catch(err){
+              
+                    setIsLoading(false)
+    
+                    setError("Error Fetching Pokemons")
+                            
+                }
+
+            }
+
+            getPokemons()
+
+        }
+
+        else{
+
+            setIsLoading(true)
+
+        }
+
+    }, [])
 
     return (
 
@@ -35,21 +92,32 @@ const Landing: React.FC = () => {
 
                             <div className="row">
 
-                                <Card name="Crochet" id={4} key={1}/>
-                                <Card name="Crocodie" id={4} key={2}/>
-                                <Card name="Crochet" id={4} key={3}/>
-                                <Card name="Crochet" id={4} key={4}/>
-                                <Card name="Crochet" id={4} key={5}/>
+                                {
+                                    loading ?
 
+                                        <p>Loading</p>
+
+                                    :
+                                    pokemons ? 
+
+                                        pokemons.results?.map((game, index) => (
+
+                                            <Card name={game.name} key={index}/>
+
+                                        ))
+                                    :
+                                    <p>Error Wa </p>
+                                }
+                                
                             </div>
 
                             <nav aria-label="Page navigation">
 
                                     <ul className="pagination justify-content-center">
                                         
-                                        <li className="page-item"><a className="page-link color-2" href="/" style={{color: "#ff7b79"}}>Previous</a></li>
+                                        <li className="page-item"><button className="page-link color-2"  style={{color: "#ff7b79"}}>Previous</button></li>
 
-                                        <li className="page-item"><a className="page-link" href="/" style={{color: "#ff7b79"}}>Next</a></li>
+                                        <li className="page-item"><button  className="page-link"  style={{color: "#ff7b79"}}>Next</button ></li>
                                         
                                     </ul>
 

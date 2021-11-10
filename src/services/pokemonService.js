@@ -5,7 +5,7 @@ export const fetchPokemons = () => {
 
   const http = new HttpService();
 
-  const url = '/pokemon';
+  const url = '/';
 
   return http.getData(url);
 
@@ -15,7 +15,7 @@ export const getPokemon = (id) => {
 
   const http = new HttpService();
 
-  const url = `/pokemon/${id}`;
+  const url = `/${id}`;
 
   return http.getData(url);
 

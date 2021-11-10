@@ -6,16 +6,15 @@ interface CardDetails {
 
     name: string;
 
-    id: number;
 }
 
-const Card = ({name, id} : CardDetails) => {
+const Card = ({name} : CardDetails) => {
 
     return (
 
         <div className="col-lg-4">
 
-            <Link to={`/pokemon/${id}`}>
+            <Link to={`/pokemon/${name}`}>
 
                 <a href="/" className="service-link">
 
