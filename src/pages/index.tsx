@@ -1,19 +1,14 @@
 import Card from '../components/main/Card';
 
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { fetchPokemons } from '../services/pokemonService';
 
-interface pokemon {
+import { getUrlParameters } from '../utilities/utils';
 
-    count: number | null
+import Loader from "react-loader-spinner";
 
-    next: string | null,
-
-    previous: string | null,
-
-    results: {name: string, url: string}[] | null
-}
+import pokemon from "../interface/pokemonInterface"
 
 const Landing: React.FC = () => {
 
@@ -21,43 +16,44 @@ const Landing: React.FC = () => {
 
     const [pokemons, setPokemons] = useState<pokemon | null>(null)
 
-    const [error, setError] = useState<string| null>(null)
+    const [error, setError] = useState<string | null>(null)
+
+    const getPokemons = async (params: URLSearchParams | string | null) => {
+
+        const result = await fetchPokemons(params)
+
+        const { data }: { data: pokemon } = result
+
+        setPokemons(data)
+
+        setTimeout(() => {
+
+            setIsLoading(false)
+
+        }, 1000)
+
+    }
 
     useEffect(() => {
 
-        if(!pokemons){
+        if (!pokemons) {
 
-            const getPokemons = async () => {
+            try {
 
-                try{
+                getPokemons(null)
 
-                    const result = await fetchPokemons()
+            }
+            catch (e) {
 
-                    console.log(result)
-              
-                    const { data } : {data: pokemon} = result
+                setIsLoading(false)
 
-                    setPokemons(data)
-                            
-                    setIsLoading(false)
-                          
-                }
-              
-                catch(err){
-              
-                    setIsLoading(false)
-    
-                    setError("Error Fetching Pokemons")
-                            
-                }
+                setError("Error Fetching Pokemons")
 
             }
 
-            getPokemons()
-
         }
 
-        else{
+        else {
 
             setIsLoading(true)
 
@@ -65,69 +61,127 @@ const Landing: React.FC = () => {
 
     }, [])
 
+    const fetchPreviousOrNextPokemons = async (url: string | null) => {
+
+        if (url) {
+
+            const params = getUrlParameters(url)
+
+            setIsLoading(true)
+
+            try {
+
+                getPokemons(params)
+
+            }
+
+            catch (err) {
+
+                setIsLoading(false)
+
+                setError("Error Fetching Pokemons")
+
+            }
+        }
+
+    }
+
     return (
 
-            <main>
-                <div className="services">
+        <main>
+            <div className="services">
 
-                    <div className="container">
+                <div className="container">
 
-                        <div className="text-center">
+                    <div className="text-center">
 
-                            <h2>List of Available Pokemons</h2>
+                        <h2>List of Available Pokemons</h2>
 
-                            <div className="border-multiple">
+                        <div className="border-multiple">
 
-                                <span className="first"></span>
+                            <span className="first"></span>
 
-                                <span className="second"></span>
+                            <span className="second"></span>
 
-                                <span className="third"></span>
-
-                            </div>
+                            <span className="third"></span>
 
                         </div>
 
-                        <div className="mt-5">
+                    </div>
 
-                            <div className="row">
+                    <div className="mt-5">
 
-                                {
-                                    loading ?
+                        {
+                            loading ?
 
-                                        <p>Loading</p>
+                                <div className="text-center" >
+
+                                    <Loader
+
+                                        type="Puff"
+
+                                        color="#ff7b79"
+
+                                        height={60}
+
+                                        width={60}
+
+                                        
+                                    />
+                                </div>
+
+                                :
+
+                                pokemons ?
+
+                                    <>
+
+                                        <div className="row">
+
+                                            {
+                                                pokemons.results?.map((game, index) => (
+
+                                                    <Card name={game.name} key={index} />
+
+                                                ))
+
+                                            }
+
+                                        </div>
+
+                                        <nav aria-label="Page navigation">
+
+                                            <ul className="pagination justify-content-center">
+
+                                                <li className="page-item">
+
+                                                    <button onClick={() => fetchPreviousOrNextPokemons(pokemons.previous)} disabled={pokemons.previous ? false : true} className="page-link color-2" style={{ color: "#ff7b79" }}>Previous</button>
+
+                                                </li>
+
+                                                <li className="page-item">
+
+                                                    <button onClick={() => fetchPreviousOrNextPokemons(pokemons.next)} disabled={pokemons.next ? false : true} className="page-link" style={{ color: "#ff7b79" }}>Next</button >
+
+                                                </li>
+
+                                            </ul>
+
+                                        </nav>
+
+                                    </>
 
                                     :
-                                    pokemons ? 
 
-                                        pokemons.results?.map((game, index) => (
+                                    <p className="text-center">{error}</p>
 
-                                            <Card name={game.name} key={index}/>
+                        }
 
-                                        ))
-                                    :
-                                    <p>Error Wa </p>
-                                }
-                                
-                            </div>
-
-                            <nav aria-label="Page navigation">
-
-                                    <ul className="pagination justify-content-center">
-                                        
-                                        <li className="page-item"><button className="page-link color-2"  style={{color: "#ff7b79"}}>Previous</button></li>
-
-                                        <li className="page-item"><button  className="page-link"  style={{color: "#ff7b79"}}>Next</button ></li>
-                                        
-                                    </ul>
-
-                            </nav>
-
-                        </div>
                     </div>
                 </div>
+            </div>
 
-             </main>
+        </main>
 
     )
 

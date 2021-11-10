@@ -1,11 +1,10 @@
-import { idText } from 'typescript';
 import HttpService from './httpService';
 
-export const fetchPokemons = () => {
+export const fetchPokemons = (params) => {
 
   const http = new HttpService();
 
-  const url = '/';
+  const url = params ? `?${params}`: '/';
 
   return http.getData(url);
 
