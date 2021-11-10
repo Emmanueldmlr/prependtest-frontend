@@ -14,9 +14,9 @@ const Footer = () => {
 
 						<ul id="subFooterLinks">
 
-							<li><a href="/" target="_blank"> By Bakare Damilare E.</a></li>
+							<li> By Bakare Damilare E.</li>
 
-							<li><a href="/" target="_blank">emmanueldmlr@gmail.com</a></li>
+							<li>emmanueldmlr@gmail.com</li>
 
 						</ul>
 						

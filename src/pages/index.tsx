@@ -173,7 +173,7 @@ const Landing: React.FC = () => {
 
                                     :
 
-                                    <p className="text-center">{error}</p>
+                                    <h4 className="text-center text-danger">{error}</h4>
 
                         }
 

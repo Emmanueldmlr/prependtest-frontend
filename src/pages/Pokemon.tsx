@@ -9,6 +9,7 @@ import Loader from "react-loader-spinner";
 import gameInterface from '../interface/gameInterface'
 
 import Wrapper from '../components/main/Wrapper'
+
 import ListCard from 'components/main/ListCard';
 
 const Pokemon: React.FC = () => {
@@ -272,7 +273,7 @@ const Pokemon: React.FC = () => {
                 </div>
 
             </div>
-            
+
         </main>
 
     )
